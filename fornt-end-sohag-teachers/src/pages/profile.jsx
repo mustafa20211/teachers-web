@@ -7,8 +7,7 @@ const Profile = (props) => {
     
     const location = useLocation()
     const data = location.state.data ; 
-    return (
-        <>
+    return (<>
     <section className="main-view ">
         <div className="container profile-container">
             <div className="image">
@@ -44,7 +43,7 @@ const Profile = (props) => {
             <div className="contact">
                 <h1 className="section-heading">contact</h1>
                 <h3>Phone Number:</h3>
-                <a href={data?data.fac:""}></a>
+                <a href={data?data.fac:""}>faceBook</a>
                 <a href={data?data.whatsApp:""}>WhatsApp</a>
                 <a href={data?data.email:""}>email</a>
             </div>

@@ -13,7 +13,7 @@ const Footer = () => {
         </div>
 
     </div>
-    <p>all right reserved@Eng.M.abdelhamid</p>
+    <p>Developed By@Eng.M.abdelhamid</p>
 
 </div>
     )

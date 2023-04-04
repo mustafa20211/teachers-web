@@ -10,6 +10,9 @@ import UseFetch from "../customs/usefetch";
 import { L1 , L2 , L3 } from '../customs/LocalData';
 import { useRef } from 'react';
 const Home = () => {
+    const ref1=useRef(null); 
+    const ref2 =useRef(null);
+    const ref3 =useRef(null)
     const { data, pending, error } = UseFetch('/home')
     const HandelClick = (e, item)=>{
         console.log(item)
@@ -18,15 +21,35 @@ const Home = () => {
     }
     const navigate = useNavigate() ; 
     const [current , setCurrent] = useState(null)
-    const ll1 = useRef(null) ; 
-    // if (L1){
-    //    window.scrollTo({
-    //     top: ll1.current.offsetTop, 
-    //     behavior:'smooth'
-    //    }) 
-      
-    // }
+    const handelStyleChange = (name , e)=>{
+        let currentDiv ; 
+        switch(name){
+            case '1':
+                (current===L1)?setCurrent(null):setCurrent(L1);
+                currentDiv=ref1;
+                break ; 
+            case '2':
+                (current===L2)?setCurrent(null):setCurrent(L2);
+                currentDiv=ref2;
+                break ; 
+            case '3':
+                (current===L3)?setCurrent(null):setCurrent(L3);
+                currentDiv=ref3;
+                break ; 
+            default: 
+                break;
+        }
 
+        
+        const top = currentDiv.current.clientTop ; 
+        const height =currentDiv.current.offsetHeight ; 
+        const bot = top +height ; 
+        console.log(height , top)
+        currentDiv.current.scrollIntoView({block:"center"} )
+
+
+    }
+    
         return (<>
         
         <section >
@@ -55,29 +78,21 @@ const Home = () => {
                 </div>
             <div className="container">
                 <div className="home-card-holder">
-                   <div className='home-card' ref={ll1} onClick={()=>{
-                    (current===L1)?setCurrent(null):setCurrent(L1)
-                    const top = ll1.current.clientTop ; 
-                    const height =ll1.current.offsetHeight ; 
-                    const bot = top +height ; 
-                    console.log(height , top)
-                   ll1.current.scrollIntoView({block:"center"} )
-                   
-                } } >
+                   <div className='home-card'  onClick={()=>handelStyleChange('1') } ref={ref1}>
                         <div className='image' ><img src={home1} alt="" /></div>
                         <h1>المرحلة الابتدائية صفوف اولى</h1>
                         <ul>
                             {(current===L1)&&current.map((item)=><li  key={item.id} onClick={(e)=>{HandelClick(e,item)}}>{item.Sphead}</li>)}
                         </ul>
                     </div> 
-                    <div className='home-card'onClick={()=>(current===L2)?setCurrent(null):setCurrent(L2)}  >
+                    <div className='home-card'onClick={()=>handelStyleChange('2')} ref={ref2} >
                         <div className='image'><img src={home1} alt=""></img></div>
                         <h1>المرحلة الابتدائية صفوف عليا</h1>
                         <ul>
                             {(current===L2)&&current.map((item)=><li  key={item.id} onClick={(e)=>{HandelClick(e,item)}}>{item.Sphead}</li>)}
                         </ul>
                     </div> 
-                    <div className='home-card' onClick={()=>(current===L3)?setCurrent(null):setCurrent(L3)}>
+                    <div className='home-card' onClick={()=>handelStyleChange('3') } ref={ref3}>
                         
                         <div className='image'><img src={home1} alt="" /></div>
                         <h1>المرحلة الاعدادية</h1>
@@ -109,7 +124,6 @@ const Home = () => {
                 </div>
 
             </section>
-        
         </>
 )}
 

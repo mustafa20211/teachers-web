@@ -13,14 +13,20 @@
 
 body {
     width: 100%;
-    height: 100%;
     font-family: cairo;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: 1;
 }
 
 #root {
     width: 100%;
-    height: 100%;
+    height: 100vh;
     font-family: cairo;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: 1;
+    z-index: 999;
 }
 
 .container {
@@ -36,7 +42,9 @@ body {
 }
 
 .section-heading {
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     padding-top: 0.3em;
     font-size: xx-large;
     font-weight: 800;
@@ -522,7 +530,7 @@ button:hover {
     justify-items: center;
     justify-content: center;
     align-content: center;
-    width: 25em;
+    width: 22em;
     margin: 1em;
 }
 
