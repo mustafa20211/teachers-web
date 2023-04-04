@@ -13,7 +13,7 @@ const app = express();
 
 app.use(express.static('public'));
 app.use('/src-img-video', express.static('src-img-video'));
-//app.use(express.static('./fornt-end-sohag-teachers/build')) // used in production
+app.use(express.static('./fornt-end-sohag-teachers/build')) // used in production
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(session({ secret: '55888kprpel kmlkr', saveUninitialized: false, resave: false }));
